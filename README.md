@@ -1,5 +1,8 @@
 # 🌈Vue跑马灯
 
+
+## 🎈[在线演示](http://aring1998.gitee.io/vue-marquee)
+
 ## ✨介绍
 ![Image text](src/assets/img/demo.gif)
 
@@ -8,17 +11,30 @@ VueMarquee是一个类似LED滚动灯效果的小组件，通过CSS3过渡方案
 您可以自定义 **颜色/尺寸/点击事件** 等来满足您的业务需求。
 
 ## 🔨使用
-复制[VueMarquee](./src/components/VueMarquee.vue)至您的项目中，注意修改`module.exports 为 export default`，然后引用它。
+
+### 全局引用
 ```JavaScript
-  <template>
-    <vue-marquee></vue-marquee>
-  </template>
-  import VueMarquee from 'xxx/VueMarquee.vue'
+import VueMarquee from "aring-vue-marquee";
+Vue.use(VueMarquee);
+```
+
+### 组件内引用
+```HTML
+<script>
+  import VueMarquee from 'aring-vue-marquee';
   export default {
     components: {
       VueMarquee
     }
-  }
+  };
+</script>
+```
+
+### 在页面中使用aring-vue-marquee
+```HTML
+<template>
+  <vue-marquee text="请注意文本属性是必不可少的"></vue-marquee>
+</template>
 ```
 
 ## 🎨API
