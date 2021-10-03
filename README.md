@@ -10,11 +10,16 @@ VueMarquee是一个类似LED滚动灯效果的小组件，通过CSS3过渡方案
 
 您可以自定义 **颜色/尺寸/点击事件** 等来满足您的业务需求。
 
+## 📦安装
+```
+npm install aring-vue-marquee -S
+```
+
 ## 🔨使用
 
 ### 全局引用
 ```JavaScript
-import VueMarquee from "aring-vue-marquee";
+import VueMarquee from 'aring-vue-marquee';
 Vue.use(VueMarquee);
 ```
 
