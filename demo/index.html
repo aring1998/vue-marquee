@@ -26,7 +26,7 @@
 
     <div class="card">
       <h2>自定义跑马灯</h2>
-      <div style="width: 50%;margin: 0 auto;background-color: #eee;">
+      <div style="width: 80%;margin: 0 auto;background-color: #eee;">
         <vue-marquee :text="text" color="red" cursor="pointer"></vue-marquee>
       </div>
     </div>
@@ -35,7 +35,7 @@
       <h2>速度调节</h2>
       <button @click="rollTime = 5">跑得快些</button>
       <button @click="rollTime = 30">跑得慢些</button>
-      <div style="width: 50%;margin: 0 auto;background-color: #eee;">
+      <div style="width: 80%;margin: 0 auto;background-color: #eee;">
         <vue-marquee :text="text" color="red" :roll-time="rollTime"></vue-marquee>
       </div>
     </div>
@@ -45,7 +45,7 @@
       <button @click="size = ''">默认</button>
       <button @click="size = 'small'">小型</button>
       <button @click="size = 'large'">大型</button>
-      <div style="width: 50%;margin: 0 auto;background-color: #eee;">
+      <div style="width: 80%;margin: 0 auto;background-color: #eee;">
         <vue-marquee :text="text" :size="size"></vue-marquee>
       </div>
     </div>
@@ -55,31 +55,31 @@
       <span>您仍可以动态指定其暂停/继续滚动</span>
       <button @click="$refs.marquee.stopRoll()">暂停</button>
       <button @click="$refs.marquee.continueRoll()" style="margin-bottom: 10px;">继续</button>
-      <div style="width: 50%;margin: 0 auto;background-color: #eee;">
+      <div style="width: 80%;margin: 0 auto;background-color: #eee;">
         <vue-marquee :text="text" :mouse-over="false" ref="marquee"></vue-marquee>
       </div>
     </div>
 
     <div class="card">
       <h2>定义点击事件</h2>
-      <div style="width: 50%;margin: 0 auto;background-color: #eee;">
+      <div style="width: 80%;margin: 0 auto;background-color: #eee;">
         <vue-marquee :text="changeText" cursor="pointer" @click="changeText='您好呀，感谢来访~'"></vue-marquee>
       </div>
     </div>
     
     <div class="card">
       <h2>加入小图标</h2>
-      <div style="width: 50%;margin: 0 auto;background-color: #eee;">
+      <div style="width: 80%;margin: 0 auto;background-color: #eee;">
         <vue-marquee :text="text">
-          <img src="./src/assets/img/notice.png" alt="">
+          <img src="/src/assets/img/notice.png" alt="">
         </vue-marquee>
       </div>
     </div>
   </div>
   
-  <script src="./src/assets/js/vue.js"></script>
-  <script src="./src/assets/js/http-vue-loader.js"></script>
-  <script type="module">
+  <script src="/src/assets/js/vue.js"></script>
+  <script src="/src/assets/js/http-vue-loader.js"></script>
+  <script>
     Vue.use(httpVueLoader)
     const app = new Vue({
       el: '#app',
@@ -92,10 +92,9 @@
         }
       },
       components: {
-        'vue-marquee': httpVueLoader('./src/components/VueMarquee.vue')
+        'vue-marquee': httpVueLoader('/src/components/VueMarquee.vue')
       }
     })
-    
   </script>
 </body>
 </html>

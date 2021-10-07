@@ -1,0 +1,6 @@
+.*
+*.yml
+demo/
+node_modules/
+src/
+webpack.config.js

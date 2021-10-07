@@ -18,6 +18,7 @@
 
 <script>
 module.exports = {
+  name: 'VueMarquee',
   data() {
     return {
       textLeft: '',

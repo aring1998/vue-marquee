@@ -4,7 +4,7 @@
 ## 🎈[在线演示](http://aring1998.gitee.io/vue-marquee)
 
 ## ✨介绍
-![Image text](src/assets/img/demo.gif)
+<img src="http://aring.3vfree.net/my-img/demo.gif" alt="" />
 
 VueMarquee是一个类似LED滚动灯效果的小组件，通过CSS3过渡方案来实现文本滚动以适应移动端，并减轻间隔器方案造成的性能损耗。
 
@@ -18,6 +18,7 @@ npm install aring-vue-marquee -S
 ## 🔨使用
 
 ### 全局引用
+在`main.js`中
 ```JavaScript
 import VueMarquee from 'aring-vue-marquee';
 Vue.use(VueMarquee);
@@ -25,6 +26,9 @@ Vue.use(VueMarquee);
 
 ### 组件内引用
 ```HTML
+<template>
+  <vue-marquee text="请注意文本属性是必不可少的"></vue-marquee>
+</template>
 <script>
   import VueMarquee from 'aring-vue-marquee';
   export default {
@@ -33,13 +37,6 @@ Vue.use(VueMarquee);
     }
   };
 </script>
-```
-
-### 在页面中使用aring-vue-marquee
-```HTML
-<template>
-  <vue-marquee text="请注意文本属性是必不可少的"></vue-marquee>
-</template>
 ```
 
 ## 🎨API
@@ -51,7 +48,7 @@ Vue.use(VueMarquee);
 | color | String | —— | #333 | 文本颜色 |
 | rollTime | Number | —— | 15 | 滚动时间 |
 | cursor | String | —— | text | 鼠标放置文本时的光标 |
-| size | Number | small/large | —— | 尺寸 |
+| size | String | small/large | —— | 尺寸 |
 | mouseOver | Blooean | —— | true | 是否禁用暂停滚动 |
 
 ### Event
