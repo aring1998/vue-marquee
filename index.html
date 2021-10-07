@@ -71,14 +71,14 @@
       <h2>加入小图标</h2>
       <div style="width: 80%;margin: 0 auto;background-color: #eee;">
         <vue-marquee :text="text">
-          <img src="/src/assets/img/notice.png" alt="">
+          <img src="./src/assets/img/notice.png" alt="">
         </vue-marquee>
       </div>
     </div>
   </div>
   
-  <script src="/src/assets/js/vue.js"></script>
-  <script src="/src/assets/js/http-vue-loader.js"></script>
+  <script src="./src/assets/js/vue.js"></script>
+  <script src="./src/assets/js/http-vue-loader.js"></script>
   <script>
     Vue.use(httpVueLoader)
     const app = new Vue({
@@ -92,7 +92,7 @@
         }
       },
       components: {
-        'vue-marquee': httpVueLoader('/src/components/VueMarquee.vue')
+        'vue-marquee': httpVueLoader('./src/components/VueMarquee.vue')
       }
     })
   </script>
