@@ -1,5 +1,6 @@
 # 🌈Vue跑马灯
 
+## 简体中文 | [English](./README_en.md)
 
 ## 🎈[在线演示](http://aring1998.gitee.io/vue-marquee)
 
