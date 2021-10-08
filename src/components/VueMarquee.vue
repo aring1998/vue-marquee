@@ -35,10 +35,10 @@ module.exports = {
       type: String,
       default: '#333'
     },
-    // 滚动时间(单位: 秒)
+    // 滚动时间(单位: ms)
     rollTime: {
       type: Number,
-      default: 15
+      default: 15000
     },
     cursor: {
       type: String,
@@ -83,16 +83,11 @@ module.exports = {
       const textWidth = this.$refs.text.clientWidth;
       // 暂停/开始滚动时需要判断当前文本滚动的进度
       const rollTime = this.rollTime * ((textLeft + textWidth) / (wrapWidth + textWidth));
-      const againTime = rollTime * 1000 + 500; // 重新开始滚动时间计算
-      this.textTransition = `left ${rollTime}s linear`; // 滚动前绑定过渡属性
+      const againTime = rollTime + 500; // 重新开始滚动时间计算
+      this.textTransition = `left ${rollTime}ms linear`; // 滚动前绑定过渡属性
       setTimeout(() => { this.textLeft = `-${textWidth}px`; }); // 向容器最左移动
       this.timer = setTimeout(() => {
-        // 还原文本位置
-        this.textTransition = 'none'; // 还原前需清除过渡
-        this.textLeft = '100%';
-        setTimeout(() => {
-          this.textRoll();
-        });
+        this.reset()
       }, againTime);
     },
     // 停止滚动
@@ -108,8 +103,10 @@ module.exports = {
     // 重置
     reset() {
       clearTimeout(this.timer);
+      // 还原文本位置
+      this.textTransition = 'none'; // 还原前需清除过渡
       this.textLeft = '100%';
-      this.$nextTick(() => { this.marquee(); });
+      setTimeout(() => { this.textRoll(); });
     }
   },
   beforeDestory() {

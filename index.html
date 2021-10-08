@@ -33,8 +33,8 @@
 
     <div class="card">
       <h2>速度调节</h2>
-      <button @click="rollTime = 5">跑得快些</button>
-      <button @click="rollTime = 30">跑得慢些</button>
+      <button @click="rollTime = 5000">跑得快些</button>
+      <button @click="rollTime = 30000" style="margin-bottom: 10px;">跑得慢些</button>
       <div style="width: 80%;margin: 0 auto;background-color: #eee;">
         <vue-marquee :text="text" color="red" :roll-time="rollTime"></vue-marquee>
       </div>
@@ -44,7 +44,7 @@
       <h2>定义尺寸</h2>
       <button @click="size = ''">默认</button>
       <button @click="size = 'small'">小型</button>
-      <button @click="size = 'large'">大型</button>
+      <button @click="size = 'large'" style="margin-bottom: 10px;">大型</button>
       <div style="width: 80%;margin: 0 auto;background-color: #eee;">
         <vue-marquee :text="text" :size="size"></vue-marquee>
       </div>
@@ -87,7 +87,7 @@
         return {
           text: '海外徒闻更九州，他生未卜此生休。 空闻虎旅传宵柝，无复鸡人报晓筹。 此日六军同驻马，当时七夕笑牵牛。 如何四纪为天子，不及卢家有莫愁。',
           changeText: '海外徒闻更九州，他生未卜此生休。 空闻虎旅传宵柝，无复鸡人报晓筹。 此日六军同驻马，当时七夕笑牵牛。 如何四纪为天子，不及卢家有莫愁。',
-          rollTime: 15,
+          rollTime: 15000,
           size: ''
         }
       },
