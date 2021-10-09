@@ -1,6 +1,6 @@
 # 🌈AringVueMarquee
 
-## [简体中文](./README.md) | English
+[简体中文](./README.md) | English
 
 ## 🎈[Demo](http://aring1998.gitee.io/vue-marquee)
 
@@ -50,7 +50,7 @@ Vue.use(VueMarquee);
 | rollTime | Number | —— | 15000 | Rolling time，unit:ms |
 | cursor | String | —— | text | Cursor when mouse over |
 | size | String | small/large | —— | Size of marquee |
-| mouseOver | Blooean | —— | true | Allow pause rolling |
+| mouseOver | Blooean | —— | true | Allow stop rolling on mouse over |
 
 ### Event
 | Name | Description |

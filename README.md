@@ -1,6 +1,6 @@
 # 🌈Vue跑马灯
 
-## 简体中文 | [English](./README_en.md)
+简体中文 | [English](./README_en.md)
 
 ## 🎈[在线演示](http://aring1998.gitee.io/vue-marquee)
 
@@ -50,7 +50,7 @@ Vue.use(VueMarquee);
 | rollTime | Number | —— | 15000 | 滚动时间，单位ms |
 | cursor | String | —— | text | 鼠标放置文本时的光标 |
 | size | String | small/large | —— | 尺寸 |
-| mouseOver | Blooean | —— | true | 是否禁用暂停滚动 |
+| mouseOver | Blooean | —— | true | 是否允许鼠标移入暂停滚动 |
 
 ### Event
 | 事件名称 | 说明 |
