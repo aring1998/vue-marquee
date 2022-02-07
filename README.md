@@ -5,7 +5,7 @@
 ## 🎈[在线演示](http://aring1998.gitee.io/vue-marquee)
 
 ## ✨介绍
-<img src="http://aring.3vfree.net/my-img/vue-marquee/demo.gif" alt="" />
+<img src="http://aring.3vfree.cc/my-img/vue-marquee/demo.gif" alt="" />
 
 AringVueMarquee是一个类似LED滚动灯效果的小组件，通过CSS3过渡方案来实现文本滚动以适应移动端，并减轻间隔器方案造成的性能损耗。
 

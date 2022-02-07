@@ -5,7 +5,7 @@
 ## 🎈[Demo](http://aring1998.gitee.io/vue-marquee)
 
 ## ✨Introduce
-<img src="http://aring.3vfree.net/my-img/vue-marquee/demo.gif" alt="" />
+<img src="http://aring.3vfree.cc/my-img/vue-marquee/demo.gif" alt="" />
 
 AringVueMarquee is a small component similar to the effect of LED rolling light. It realizes text rolling through CSS3 transition scheme to adapt to the mobile terminal and reduce the performance loss caused by interval.
 
