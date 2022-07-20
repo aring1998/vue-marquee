@@ -5,7 +5,7 @@
 ## 🎈[在线演示](http://aring1998.gitee.io/vue-marquee)
 
 ## ✨介绍
-<img src="http://aring.3vfree.cc/my-img/vue-marquee/demo.gif" alt="" />
+<img src="https://source.aring.cc/assets/project/vue-marquee/demo.gif" alt="" />
 
 AringVueMarquee是一个类似LED滚动灯效果的小组件，通过CSS3过渡方案来实现文本滚动以适应移动端，并减轻间隔器方案造成的性能损耗。
 
@@ -53,9 +53,10 @@ Vue.use(VueMarquee);
 | mouseOver | Blooean | —— | true | 是否允许鼠标移入暂停滚动 |
 
 ### Event
-| 事件名称 | 说明 |
-| :----- | :----- |
-| click | 可在@click中自定义点击文本的事件 |
+| 事件名称 | 说明 | 回调参数 |
+| :----- | :----- | :----- |
+| click | 可在@click中自定义点击文本的事件 | 文本内容 |
+| change | 当文本变化时触发事件 | 更新后的文本内容 |
 
 ### Methods
 | 方法 | 说明 |

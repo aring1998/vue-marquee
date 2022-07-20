@@ -3,9 +3,11 @@
     <slot></slot>
     <div class="vue-marquee-wrapper" ref="wrap">
       <div
+        v-bind="$attrs"
+        v-on="$listeners"
         class="vue-marquee-text"
         ref="text"
-        @click="$emit('click')"
+        @click="$emit('click', text)"
         @mouseover="mouseOver && stopRoll()"
         @mouseout="mouseOver && continueRoll()"
         :style="{ left: textLeft, transition: textTransition, color, cursor }"
@@ -23,7 +25,7 @@ module.exports = {
     return {
       textLeft: '',
       textTransition: '',
-      timer: null,
+      timer: null
     };
   },
   props: {
@@ -58,14 +60,15 @@ module.exports = {
     text: {
       handler() {
         this.reset();
-      },
+        this.$emit('change', this.text);
+      }
     },
     // 监听滚动时间变化
     rollTime: {
       handler() {
         this.reset();
-      },
-    },
+      }
+    }
   },
   mounted() {
     this.marquee();
@@ -73,7 +76,7 @@ module.exports = {
   methods: {
     // 跑马灯运作
     marquee() {
-      if (this.text === '') return;
+      if (this.text === '') return console.error('[AringVueMarquee Warn] Params of [Text] is necessary.');
       this.textRoll();
     },
     // 文本滚动
@@ -85,9 +88,12 @@ module.exports = {
       const rollTime = this.rollTime * ((textLeft + textWidth) / (wrapWidth + textWidth));
       const againTime = rollTime + 500; // 重新开始滚动时间计算
       this.textTransition = `left ${rollTime}ms linear`; // 滚动前绑定过渡属性
-      setTimeout(() => { this.textLeft = `-${textWidth}px`; }); // 向容器最左移动
+      setTimeout(() => {
+        // 向容器最左移动
+        this.textLeft = `-${textWidth}px`;
+      });
       this.timer = setTimeout(() => {
-        this.reset()
+        this.reset();
       }, againTime);
     },
     // 停止滚动
@@ -106,7 +112,9 @@ module.exports = {
       // 还原文本位置
       this.textTransition = 'none'; // 还原前需清除过渡
       this.textLeft = '100%';
-      setTimeout(() => { this.textRoll(); });
+      setTimeout(() => {
+        this.textRoll();
+      });
     }
   },
   beforeDestory() {

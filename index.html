@@ -1,100 +1,106 @@
 <!DOCTYPE html>
 <html lang="zh">
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>VueMarquee</title>
-  <style>
-    #app .card {
-      border: 2px #e8eaed solid;
-      border-radius: 5px;
-      width: 60%;
-      padding: 20px;
-      margin: 10px auto;
-    }
-  </style>
-</head>
-<body>
-  <div id="app">
-    <h1 style="text-align: center;">VueMarquee</h1>
-    
-    <div class="card">
-      <h2>基础用法</h2>
-      <vue-marquee :text="text"></vue-marquee>
-    </div>
-
-    <div class="card">
-      <h2>自定义跑马灯</h2>
-      <div style="width: 80%;margin: 0 auto;background-color: #eee;">
-        <vue-marquee :text="text" color="red" cursor="pointer"></vue-marquee>
-      </div>
-    </div>
-
-    <div class="card">
-      <h2>速度调节</h2>
-      <button @click="rollTime = 5000">跑得快些</button>
-      <button @click="rollTime = 30000" style="margin-bottom: 10px;">跑得慢些</button>
-      <div style="width: 80%;margin: 0 auto;background-color: #eee;">
-        <vue-marquee :text="text" color="red" :roll-time="rollTime"></vue-marquee>
-      </div>
-    </div>
-
-    <div class="card">
-      <h2>定义尺寸</h2>
-      <button @click="size = ''">默认</button>
-      <button @click="size = 'small'">小型</button>
-      <button @click="size = 'large'" style="margin-bottom: 10px;">大型</button>
-      <div style="width: 80%;margin: 0 auto;background-color: #eee;">
-        <vue-marquee :text="text" :size="size"></vue-marquee>
-      </div>
-    </div>
-
-    <div class="card">
-      <h2>禁用暂停滚动</h2>
-      <span>您仍可以动态指定其暂停/继续滚动</span>
-      <button @click="$refs.marquee.stopRoll()">暂停</button>
-      <button @click="$refs.marquee.continueRoll()" style="margin-bottom: 10px;">继续</button>
-      <div style="width: 80%;margin: 0 auto;background-color: #eee;">
-        <vue-marquee :text="text" :mouse-over="false" ref="marquee"></vue-marquee>
-      </div>
-    </div>
-
-    <div class="card">
-      <h2>定义点击事件</h2>
-      <div style="width: 80%;margin: 0 auto;background-color: #eee;">
-        <vue-marquee :text="changeText" cursor="pointer" @click="changeText='您好呀，感谢来访~'"></vue-marquee>
-      </div>
-    </div>
-    
-    <div class="card">
-      <h2>加入小图标</h2>
-      <div style="width: 80%;margin: 0 auto;background-color: #eee;">
-        <vue-marquee :text="text">
-          <img src="./src/assets/img/notice.png" alt="">
-        </vue-marquee>
-      </div>
-    </div>
-  </div>
-  
-  <script src="./src/assets/js/vue.js"></script>
-  <script src="./src/assets/js/http-vue-loader.js"></script>
-  <script>
-    Vue.use(httpVueLoader)
-    const app = new Vue({
-      el: '#app',
-      data() {
-        return {
-          text: '海外徒闻更九州，他生未卜此生休。 空闻虎旅传宵柝，无复鸡人报晓筹。 此日六军同驻马，当时七夕笑牵牛。 如何四纪为天子，不及卢家有莫愁。',
-          changeText: '海外徒闻更九州，他生未卜此生休。 空闻虎旅传宵柝，无复鸡人报晓筹。 此日六军同驻马，当时七夕笑牵牛。 如何四纪为天子，不及卢家有莫愁。',
-          rollTime: 15000,
-          size: ''
-        }
-      },
-      components: {
-        'vue-marquee': httpVueLoader('./src/components/VueMarquee.vue')
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>VueMarquee</title>
+    <style>
+      #app .card {
+        border: 2px #e8eaed solid;
+        border-radius: 5px;
+        width: 60%;
+        padding: 20px;
+        margin: 10px auto;
       }
-    })
-  </script>
-</body>
+    </style>
+  </head>
+  <body>
+    <div id="app">
+      <h1 style="text-align: center;">VueMarquee</h1>
+
+      <div class="card">
+        <h2>基础用法</h2>
+        <vue-marquee :text="text"></vue-marquee>
+        <vue-marquee></vue-marquee>
+      </div>
+
+      <div class="card">
+        <h2>自定义跑马灯</h2>
+        <div style="width: 80%;margin: 0 auto;background-color: #eee;">
+          <vue-marquee :text="text" color="red" cursor="pointer"></vue-marquee>
+        </div>
+      </div>
+
+      <div class="card">
+        <h2>速度调节</h2>
+        <button @click="rollTime = 5000">跑得快些</button>
+        <button @click="rollTime = 30000" style="margin-bottom: 10px;">跑得慢些</button>
+        <div style="width: 80%;margin: 0 auto;background-color: #eee;">
+          <vue-marquee :text="text" color="red" :roll-time="rollTime"></vue-marquee>
+        </div>
+      </div>
+
+      <div class="card">
+        <h2>定义尺寸</h2>
+        <button @click="size = ''">默认</button>
+        <button @click="size = 'small'">小型</button>
+        <button @click="size = 'large'" style="margin-bottom: 10px;">大型</button>
+        <div style="width: 80%;margin: 0 auto;background-color: #eee;">
+          <vue-marquee :text="text" :size="size"></vue-marquee>
+        </div>
+      </div>
+
+      <div class="card">
+        <h2>禁用暂停滚动</h2>
+        <span>您仍可以动态指定其暂停/继续滚动</span>
+        <button @click="$refs.marquee.stopRoll()">暂停</button>
+        <button @click="$refs.marquee.continueRoll()" style="margin-bottom: 10px;">继续</button>
+        <div style="width: 80%;margin: 0 auto;background-color: #eee;">
+          <vue-marquee :text="text" :mouse-over="false" ref="marquee"></vue-marquee>
+        </div>
+      </div>
+
+      <div class="card">
+        <h2>定义点击事件</h2>
+        <div style="width: 80%;margin: 0 auto;background-color: #eee;">
+          <vue-marquee
+            :text="changeText"
+            cursor="pointer"
+            @click="changeText='您好呀，感谢来访~'"
+          ></vue-marquee>
+        </div>
+      </div>
+
+      <div class="card">
+        <h2>加入小图标</h2>
+        <div style="width: 80%;margin: 0 auto;background-color: #eee;">
+          <vue-marquee :text="text">
+            <img src="./src/assets/img/notice.png" alt="" />
+          </vue-marquee>
+        </div>
+      </div>
+    </div>
+
+    <script src="./src/assets/js/vue.js"></script>
+    <script src="./src/assets/js/http-vue-loader.js"></script>
+    <script>
+      Vue.use(httpVueLoader);
+      const app = new Vue({
+        el: '#app',
+        data() {
+          return {
+            text:
+              '海外徒闻更九州，他生未卜此生休。 空闻虎旅传宵柝，无复鸡人报晓筹。 此日六军同驻马，当时七夕笑牵牛。 如何四纪为天子，不及卢家有莫愁。',
+            changeText: '尝试点击我吧~',
+            rollTime: 15000,
+            size: ''
+          };
+        },
+        components: {
+          'vue-marquee': httpVueLoader('./src/components/VueMarquee.vue')
+        }
+      });
+    </script>
+  </body>
 </html>
