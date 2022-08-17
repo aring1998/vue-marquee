@@ -47,7 +47,7 @@ Vue.use(VueMarquee);
 | :----- | :----- | :----- | :----- | :----- |
 | text | String | —— | —— | Text content |
 | color | String | —— | #333 | Text color |
-| rollTime | Number | —— | 15000 | Rolling time，unit:ms |
+| rollTime | Number | —— | 15000 | Rolling time, unit:ms |
 | cursor | String | —— | text | Cursor when mouse over |
 | size | String | small/large | —— | Size of marquee |
 | mouseOver | Blooean | —— | true | Allow stop rolling on mouse over |
@@ -56,11 +56,11 @@ Vue.use(VueMarquee);
 | Name | Description | Parameters |
 | :----- | :----- | :----- |
 | click | You can customize the event of clicking text in @click | The text value |
-| change | triggers when the text value changes | The updated text value |
+| change | Triggers when the text value changes | The updated text value |
 
 ### Methods
 | Name | Description |
 | :----- | :----- |
 | stopRoll | Stop rolling |
-| continueRoll | continue rolling |
-| reset | reset marquee |
+| continueRoll | Continue rolling |
+| reset | Reset marquee |
