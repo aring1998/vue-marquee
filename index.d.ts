@@ -1,14 +1,18 @@
 export type MarqueeSize = 'small' | 'large';
+export type MarqueeDirectiton = 'up' | 'right' | 'down' | 'left';
 
 export declare class AringVueMarquee {
-  /** Text content */
-  text: string;
+  /** roll speed */
+  speed: number;
 
-  /** Text color */
+  /** Rolling direction of marquee */
+  direction: MarqueeDirectiton;
+
+  /** Rolling interval, unit: ms */
+  delayTime: number;
+
+  /** Color of Roll content */
   color: string;
-
-  /** Rolling time, unit:ms */
-  rollTime: number;
 
   /** Cursor when mouse over */
   cursor: string;

@@ -1,0 +1,43 @@
+@-webkit-keyframes AringVueMarquee-leftRoll {
+  100% {
+    transform: translateX(-100%);
+  }
+}
+@keyframes AringVueMarquee-leftRoll {
+  100% {
+    transform: translateX(-100%);
+  }
+}
+
+@-webkit-keyframes AringVueMarquee-rightRoll {
+  100% {
+    transform: translateX(100%);
+  }
+}
+@keyframes AringVueMarquee-rightRoll {
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+@-webkit-keyframes AringVueMarquee-upRoll {
+  100% {
+    transform: translateY(-100%);
+  }
+}
+@keyframes AringVueMarquee-upRoll {
+  100% {
+    transform: translateY(-100%);
+  }
+}
+
+@-webkit-keyframes AringVueMarquee-downRoll {
+  100% {
+    transform: translateY(100%);
+  }
+}
+@keyframes AringVueMarquee-downRoll {
+  100% {
+    transform: translateY(100%);
+  }
+}

@@ -1,18 +1,25 @@
 <template>
   <div class="vue-marquee" :class="{ small: size === 'small', large: size === 'large' }">
-    <slot></slot>
+    <slot name="icon"></slot>
     <div class="vue-marquee-wrapper" ref="wrap">
       <div
         v-bind="$attrs"
         v-on="$listeners"
         class="vue-marquee-text"
         ref="text"
-        @click="$emit('click', text)"
+        @click="$emit('click')"
         @mouseover="mouseOver && stopRoll()"
         @mouseout="mouseOver && continueRoll()"
-        :style="{ left: textLeft, transition: textTransition, color, cursor }"
+        @animationend="reset"
+        :style="{
+          transform: textTransform,
+          animation: textAnimation,
+          animationPlayState: textAnimationState,
+          color,
+          cursor
+        }"
       >
-        {{ text }}
+        <slot></slot>
       </div>
     </div>
   </div>
@@ -23,24 +30,29 @@ module.exports = {
   name: 'VueMarquee',
   data() {
     return {
-      textLeft: '',
-      textTransition: '',
+      rollTime: 0,
+      textAnimation: '',
+      textAnimationState: '',
+      textTransform: '',
       timer: null
     };
   },
   props: {
-    text: {
+    speed: {
+      type: Number,
+      default: 10
+    },
+    direction: {
       type: String,
-      default: ''
+      default: 'left'
+    },
+    delayTime: {
+      type: Number,
+      default: 500
     },
     color: {
       type: String,
       default: '#333'
-    },
-    // 滚动时间(单位: ms)
-    rollTime: {
-      type: Number,
-      default: 15000
     },
     cursor: {
       type: String,
@@ -56,16 +68,16 @@ module.exports = {
     }
   },
   watch: {
-    // 监听文本变化重新运作
-    text: {
+    // 监听滚动速度变化
+    speed: {
       handler() {
+        this.initRollTime();
         this.reset();
-        this.$emit('change', this.text);
       }
     },
-    // 监听滚动时间变化
-    rollTime: {
+    direction: {
       handler() {
+        this.initTransform();
         this.reset();
       }
     }
@@ -76,45 +88,69 @@ module.exports = {
   methods: {
     // 跑马灯运作
     marquee() {
-      if (this.text === '') return console.error('[AringVueMarquee Warn] Params of [Text] is necessary.');
+      if (!['up', 'right', 'down', 'left'].includes(this.direction)) {
+        return console.error(
+          `[AringVueMarquee Error] Please define the correct param of [direction]("up", "right", "down", "left"). Current Value: "${this.direction}".`
+        );
+      }
+      this.initRollTime();
+      this.initTransform();
       this.textRoll();
+    },
+    // 动态计算滚动时间
+    initRollTime() {
+      if (this.speed < 0) {
+        throw new Error(`[AringVueMarquee Error] Param of [speed] can not be less then 0 (Current speed: ${this.speed}).`);
+      }
+      if (this.speed < 0.5) {
+        console.warn(`[AringVueMarquee Warn] You should not set too low param of [speed] (Current speed: ${this.speed}).`);
+      }
+      if (['up', 'down'].includes(this.direction)) {
+        this.rollTime = ((this.$refs.text.clientHeight + this.$refs.wrap.clientHeight) * 10) / (this.speed / 10);
+      } else {
+        this.rollTime = ((this.$refs.text.clientWidth + this.$refs.wrap.clientWidth) * 10) / (this.speed / 10);
+      }
+    },
+    // 根据方向判定文本初始位置
+    initTransform() {
+      switch (this.direction) {
+        case 'up': {
+          this.textTransform = `translateY(${this.$refs.text.clientHeight}px)`;
+          break;
+        }
+        case 'right': {
+          this.textTransform = `translateX(${-this.$refs.text.clientWidth}px)`;
+          break;
+        }
+        case 'down': {
+          this.textTransform = `translateY(${-this.$refs.wrap.clientHeight}px)`;
+          break;
+        }
+        case 'left': {
+          this.textTransform = `translateX(${this.$refs.wrap.clientWidth}px)`;
+          break;
+        }
+      }
     },
     // 文本滚动
     textRoll() {
-      const wrapWidth = this.$refs.wrap.clientWidth;
-      const textLeft = this.$refs.text.offsetLeft;
-      const textWidth = this.$refs.text.clientWidth;
-      // 暂停/开始滚动时需要判断当前文本滚动的进度
-      const rollTime = this.rollTime * ((textLeft + textWidth) / (wrapWidth + textWidth));
-      const againTime = rollTime + 500; // 重新开始滚动时间计算
-      this.textTransition = `left ${rollTime}ms linear`; // 滚动前绑定过渡属性
-      setTimeout(() => {
-        // 向容器最左移动
-        this.textLeft = `-${textWidth}px`;
-      });
-      this.timer = setTimeout(() => {
-        this.reset();
-      }, againTime);
+      this.textAnimation = `AringVueMarquee-${this.direction}Roll ${this.rollTime}ms linear`;
     },
     // 停止滚动
     stopRoll() {
-      clearTimeout(this.timer);
-      this.textLeft = `${this.$refs.text.offsetLeft}px`;
+      this.textAnimationState = 'paused';
     },
     // 继续滚动
     continueRoll() {
-      clearTimeout(this.timer);
-      this.textRoll();
+      this.textAnimationState = 'running';
     },
     // 重置
     reset() {
-      clearTimeout(this.timer);
-      // 还原文本位置
-      this.textTransition = 'none'; // 还原前需清除过渡
-      this.textLeft = '100%';
-      setTimeout(() => {
+      // 重置动画
+      this.textAnimation = '';
+      this.timer = setTimeout(() => {
         this.textRoll();
-      });
+      }, this.delayTime);
     }
   },
   beforeDestory() {
@@ -124,20 +160,20 @@ module.exports = {
 </script>
 
 <style scoped>
+@import url('./animation.css');
 .vue-marquee {
   display: flex;
   align-items: center;
-  height: 40px;
   margin: 0 16px;
+  padding: 5px 0;
 }
 
 .vue-marquee-wrapper {
   display: flex;
   align-items: center;
   flex: 1;
-  height: 40px;
   overflow: hidden;
-  position: relative;
+  padding: 5px 0;
 }
 
 .vue-marquee img {
@@ -148,8 +184,6 @@ module.exports = {
 
 .vue-marquee-text {
   white-space: nowrap;
-  position: absolute;
-  left: 100%;
 }
 
 .vue-marquee.small {

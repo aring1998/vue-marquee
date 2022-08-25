@@ -7,9 +7,9 @@
 ## ✨Introduce
 <img src="https://source.aring.cc/assets/project/vue-marquee/demo.gif" alt="" />
 
-AringVueMarquee is a small component similar to the effect of LED rolling light. It realizes text rolling through CSS3 transition scheme to adapt to the mobile terminal and reduce the performance loss caused by interval.
+AringVueMarquee is a small component similar to the effect of LED rolling light. It realizes text rolling through CSS3 `Animation + Transform` scheme to adapt to the mobile terminal and reduce the performance loss caused by interval.
 
-You can customize **color / size / click event** to meet your business needs
+You can customize **color / size / click event** to meet your business needs.
 
 ## 📦Install
 ```
@@ -28,14 +28,14 @@ Vue.use(VueMarquee);
 ### In component
 ```HTML
 <template>
-  <vue-marquee text="Text is necessary"></vue-marquee>
+  <vue-marquee>
+    <span>Customize roll content here</span>
+  </vue-marquee>
 </template>
 <script>
   import VueMarquee from 'aring-vue-marquee';
   export default {
-    components: {
-      VueMarquee
-    }
+    components: { VueMarquee }
   };
 </script>
 ```
@@ -45,9 +45,10 @@ Vue.use(VueMarquee);
 ### Props
 | Name | Type | Options | Default | Description |
 | :----- | :----- | :----- | :----- | :----- |
-| text | String | —— | —— | Text content |
+| speed | Number | —— | 10 | Speed of roll, default 10, faster if it is greater than 10, slower if it is less than 10 |
+| direction | String | up/right/down/left | left | Direction of roll |
+| delayTime | Number | —— | 500 | Rolling interval, unit: ms |
 | color | String | —— | #333 | Text color |
-| rollTime | Number | —— | 15000 | Rolling time, unit:ms |
 | cursor | String | —— | text | Cursor when mouse over |
 | size | String | small/large | —— | Size of marquee |
 | mouseOver | Blooean | —— | true | Allow stop rolling on mouse over |
@@ -55,8 +56,7 @@ Vue.use(VueMarquee);
 ### Event
 | Name | Description | Parameters |
 | :----- | :----- | :----- |
-| click | You can customize the event of clicking text in @click | The text value |
-| change | Triggers when the text value changes | The updated text value |
+| click | You can customize the event of clicking text in @click | —— |
 
 ### Methods
 | Name | Description |
@@ -64,3 +64,13 @@ Vue.use(VueMarquee);
 | stopRoll | Stop rolling |
 | continueRoll | Continue rolling |
 | reset | Reset marquee |
+
+### Slot
+| Name | Description |
+| :----- | :----- |
+| (default) | Insert Roll content |
+| icon | pre-icon |
+
+## 📜其它版本
+
+### [vesion@1.2.1](https://gitee.com/aring1998/vue-marquee/tree/version/@1.2.1)
