@@ -71,6 +71,6 @@ Vue.use(VueMarquee);
 | (default) | Insert Roll content |
 | icon | pre-icon |
 
-## 📜其它版本
+## 📜Other Version
 
 ### [vesion@1.2.1](https://gitee.com/aring1998/vue-marquee/tree/version/@1.2.1)

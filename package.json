@@ -1,6 +1,6 @@
 {
   "name": "aring-vue-marquee",
-  "version": "2.0.7",
+  "version": "2.0.8",
   "description": "AringVueMarquee is a small component similar to the effect of LED rolling light.",
   "main": "dist/index.js",
   "scripts": {
