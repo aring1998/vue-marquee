@@ -4,46 +4,125 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>VueMarquee</title>
+    <link rel="stylesheet" href="./src/assets/prism/prism.css" />
+    <script src="./src/assets/prism/prism.js"></script>
+    <title>AringVueMarquee</title>
     <style>
+      *::-webkit-scrollbar {
+        width: 8px;
+        height: 8px;
+        background-color: transparent;
+      }
+      *::-webkit-scrollbar-thumb {
+        border-radius: 4px;
+        background-color: #c0c4cc;
+      }
+      h1,
+      p {
+        text-align: center;
+      }
+      p {
+        margin: 0;
+      }
       #app .card {
-        border: 2px #e8eaed solid;
-        border-radius: 5px;
-        width: 60%;
+        max-width: 1000px;
         padding: 20px;
+        background: #fbfbfb;
+        border: 1px solid #d9d9d9;
+        border-radius: 6px;
         margin: 10px auto;
+      }
+      #app .show-code {
+        text-align: center;
+        margin-top: 10px;
+      }
+      #app button {
+        outline: none;
+        background-color: #e8eaed;
+        color: #333;
+        min-width: 70px;
+        padding: 5px;
+        border: none;
+        border-radius: 5px;
+        font-size: 14px;
+        cursor: pointer;
+        transition: background-color 0.5s;
+        border: 1px #666 solid;
+      }
+      #app button:hover {
+        background-color: #ddd;
+      }
+      #app .gitee-icon {
+        display: block;
+        position: fixed;
+        right: 10px;
+        top: 10px;
       }
     </style>
   </head>
   <body>
     <div id="app">
-      <h1 style="text-align: center;">VueMarquee</h1>
+      <h1>AringVueMarquee</h1>
+      <div style="text-align: center;">
+        <a href="https://gitee.com/aring1998/vue-marquee" target="_blank">
+          <img src="https://gitee.com/aring1998/vue-marquee/widgets/widget_6.svg?color=undefined" alt="Fork me on Gitee" />
+        </a>
+      </div>
+      <p>安装: ` npm install aring-vue-marquee -S `。以下代码示例默认组件已注册为`vue-marquee`</p>
 
       <div class="card">
         <h2>基础用法</h2>
         <vue-marquee>
           <span>{{ text }}</span>
         </vue-marquee>
+        <div class="show-code">
+          <button @click="codeShow.base = true" v-show="!codeShow.base">显示代码</button>
+          <button @click="codeShow.base = false" v-show="codeShow.base">隐藏代码</button>
+        </div>
+        <pre v-show="codeShow.base">
+          <code class="language-html">
+            {{ html.base }}
+          </code>
+        </pre>
       </div>
 
       <div class="card">
         <h2>自定义跑马灯</h2>
-        <div style="width: 80%;margin: 0 auto;background-color: #eee;">
+        <div style="width: 80%; margin: 0 auto; background-color: #eee;">
           <vue-marquee color="red" cursor="pointer">
-            <span>{{ text }}</span>
+            <p>{{ text }}</p>
+            <p style="color: skyblue;">{{ text }}</p>
           </vue-marquee>
         </div>
+        <div class="show-code">
+          <button @click="codeShow.style = true" v-show="!codeShow.style">显示代码</button>
+          <button @click="codeShow.style = false" v-show="codeShow.style">隐藏代码</button>
+        </div>
+        <pre v-show="codeShow.style">
+          <code class="language-html">
+            {{ html.style }}
+          </code>
+        </pre>
       </div>
 
       <div class="card">
         <h2>速度调节</h2>
         <button @click="speed = 30">跑得快些</button>
         <button @click="speed = 1" style="margin-bottom: 10px;">跑得慢些</button>
-        <div style="width: 80%;margin: 0 auto;background-color: #eee;">
+        <div style="width: 80%; margin: 0 auto; background-color: #eee;">
           <vue-marquee color="red" :speed="speed">
             <span>{{ text }}</span>
           </vue-marquee>
         </div>
+        <div class="show-code">
+          <button @click="codeShow.speed = true" v-show="!codeShow.speed">显示代码</button>
+          <button @click="codeShow.speed = false" v-show="codeShow.speed">隐藏代码</button>
+        </div>
+        <pre v-show="codeShow.speed">
+          <code class="language-html">
+            {{ html.speed }}
+          </code>
+        </pre>
       </div>
 
       <div class="card">
@@ -51,11 +130,20 @@
         <button @click="size = ''">默认</button>
         <button @click="size = 'small'">小型</button>
         <button @click="size = 'large'" style="margin-bottom: 10px;">大型</button>
-        <div style="width: 80%;margin: 0 auto;background-color: #eee;">
+        <div style="width: 80%; margin: 0 auto; background-color: #eee;">
           <vue-marquee :size="size">
             <span>{{ text }}</span>
           </vue-marquee>
         </div>
+        <div class="show-code">
+          <button @click="codeShow.size = true" v-show="!codeShow.size">显示代码</button>
+          <button @click="codeShow.size = false" v-show="codeShow.size">隐藏代码</button>
+        </div>
+        <pre v-show="codeShow.size">
+          <code class="language-html">
+            {{ html.size }}
+          </code>
+        </pre>
       </div>
 
       <div class="card">
@@ -63,20 +151,38 @@
         <span>您仍可以动态指定其暂停/继续滚动</span>
         <button @click="$refs.marquee.stopRoll()">暂停</button>
         <button @click="$refs.marquee.continueRoll()" style="margin-bottom: 10px;">继续</button>
-        <div style="width: 80%;margin: 0 auto;background-color: #eee;">
+        <div style="width: 80%; margin: 0 auto; background-color: #eee;">
           <vue-marquee :mouseover="false" ref="marquee">
             <span>{{ text }}</span>
           </vue-marquee>
         </div>
+        <div class="show-code">
+          <button @click="codeShow.mouseover = true" v-show="!codeShow.mouseover">显示代码</button>
+          <button @click="codeShow.mouseover = false" v-show="codeShow.mouseover">隐藏代码</button>
+        </div>
+        <pre v-show="codeShow.mouseover">
+          <code class="language-html">
+            {{ html.mouseover }}
+          </code>
+        </pre>
       </div>
 
       <div class="card">
         <h2>定义点击事件</h2>
-        <div style="width: 80%;margin: 0 auto;background-color: #eee;">
-          <vue-marquee cursor="pointer" @click="changeText='您好呀，感谢来访~'">
+        <div style="width: 80%; margin: 0 auto; background-color: #eee;">
+          <vue-marquee cursor="pointer" @click="changeText = '您好呀，感谢来访~'">
             <span>{{ changeText }}</span>
           </vue-marquee>
         </div>
+        <div class="show-code">
+          <button @click="codeShow.clickEvent = true" v-show="!codeShow.clickEvent">显示代码</button>
+          <button @click="codeShow.clickEvent = false" v-show="codeShow.clickEvent">隐藏代码</button>
+        </div>
+        <pre v-show="codeShow.clickEvent">
+          <code class="language-html">
+            {{ html.clickEvent }}
+          </code>
+        </pre>
       </div>
 
       <div class="card">
@@ -85,16 +191,25 @@
         <button @click="direction = 'right'">向右</button>
         <button @click="direction = 'up'">向上</button>
         <button @click="direction = 'down'" style="margin-bottom: 10px;">向下</button>
-        <div style="width: 80%;margin: 0 auto;background-color: #eee;">
+        <div style="width: 80%; margin: 0 auto; background-color: #eee;">
           <vue-marquee :direction="direction">
             <span>您希望我以什么方向移动呢？</span>
           </vue-marquee>
         </div>
+        <div class="show-code">
+          <button @click="codeShow.direction = true" v-show="!codeShow.direction">显示代码</button>
+          <button @click="codeShow.direction = false" v-show="codeShow.direction">隐藏代码</button>
+        </div>
+        <pre v-show="codeShow.direction">
+          <code class="language-html">
+            {{ html.direction }}
+          </code>
+        </pre>
       </div>
 
       <div class="card">
         <h2>加入小图标</h2>
-        <div style="width: 80%;margin: 0 auto;background-color: #eee;">
+        <div style="width: 80%; margin: 0 auto; background-color: #eee;">
           <vue-marquee>
             <template #icon>
               <img src="./src/assets/img/notice.png" alt="" />
@@ -102,12 +217,22 @@
             <span>{{ text }}</span>
           </vue-marquee>
         </div>
+        <div class="show-code">
+          <button @click="codeShow.icon = true" v-show="!codeShow.icon">显示代码</button>
+          <button @click="codeShow.icon = false" v-show="codeShow.icon">隐藏代码</button>
+        </div>
+        <pre v-show="codeShow.icon">
+          <code class="language-html">
+            {{ html.icon }}
+          </code>
+        </pre>
       </div>
     </div>
 
     <script src="./src/assets/js/vue.js"></script>
     <script src="./src/assets/js/http-vue-loader.js"></script>
-    <script>
+    <script type="module">
+      import { base, style, speed, size, mouseover, clickEvent, direction, icon } from './src/assets/prism/code.js';
       Vue.use(httpVueLoader);
       const app = new Vue({
         el: '#app',
@@ -118,7 +243,27 @@
             changeText: '尝试点击我吧~',
             speed: 10,
             size: '',
-            direction: 'left'
+            direction: 'left',
+            html: {
+              base,
+              style,
+              speed,
+              size,
+              mouseover,
+              clickEvent,
+              direction,
+              icon
+            },
+            codeShow: {
+              base: false,
+              style: false,
+              speed: false,
+              size: false,
+              mouseover: false,
+              clickEvent: false,
+              direction: false,
+              icon: false
+            }
           };
         },
         components: {
