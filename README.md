@@ -51,7 +51,7 @@ Vue.use(VueMarquee);
 | color | String | —— | #333 | 文本颜色 |
 | cursor | String | —— | text | 鼠标放置文本时的光标 |
 | size | String | small/large | —— | 尺寸 |
-| mouseOver | Blooean | —— | true | 是否允许鼠标移入暂停滚动 |
+| mouseover | Blooean | —— | true | 是否允许鼠标移入暂停滚动 |
 
 ### Event
 | 事件名称 | 说明 | 回调参数 |

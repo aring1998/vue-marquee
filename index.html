@@ -64,7 +64,7 @@
         <button @click="$refs.marquee.stopRoll()">暂停</button>
         <button @click="$refs.marquee.continueRoll()" style="margin-bottom: 10px;">继续</button>
         <div style="width: 80%;margin: 0 auto;background-color: #eee;">
-          <vue-marquee :mouse-over="false" ref="marquee">
+          <vue-marquee :mouseover="false" ref="marquee">
             <span>{{ text }}</span>
           </vue-marquee>
         </div>

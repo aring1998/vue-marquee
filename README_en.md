@@ -51,7 +51,7 @@ Vue.use(VueMarquee);
 | color | String | —— | #333 | Text color |
 | cursor | String | —— | text | Cursor when mouse over |
 | size | String | small/large | —— | Size of marquee |
-| mouseOver | Blooean | —— | true | Allow stop rolling on mouse over |
+| mouseover | Blooean | —— | true | Allow stop rolling on mouseover |
 
 ### Event
 | Name | Description | Parameters |

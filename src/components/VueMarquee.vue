@@ -8,8 +8,8 @@
         class="vue-marquee-text"
         ref="text"
         @click="$emit('click')"
-        @mouseover="mouseOver && stopRoll()"
-        @mouseout="mouseOver && continueRoll()"
+        @mouseover="mouseover && stopRoll()"
+        @mouseout="mouseover && continueRoll()"
         @animationend="reset"
         :style="{
           transform: textTransform,
@@ -62,7 +62,7 @@ module.exports = {
       type: String,
       default: ''
     },
-    mouseOver: {
+    mouseover: {
       type: Boolean,
       default: true
     }
@@ -187,12 +187,10 @@ module.exports = {
 }
 
 .vue-marquee.small {
-  height: 30px;
   font-size: 12px;
 }
 
 .vue-marquee.large {
-  height: 50px;
   font-size: 20px;
   font-weight: bold;
 }
