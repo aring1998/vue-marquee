@@ -20,8 +20,8 @@ export declare class AringVueMarquee {
   /** Size of marquee */
   size: MarqueeSize;
 
-  /** Allow stop rolling on mouse over */
-  mouseover: MarqueeSize;
+  /** Allow stop rolling on mouse over, default: true */
+  mouseover: boolean;
 
   /** Stop the marquee rolling */
   stopRoll(): void;
